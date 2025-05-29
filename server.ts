@@ -1,7 +1,8 @@
 import logger from "./src/config/logger";
 import { createMessageBroker } from "./src/factories/broker-factory";
 import { MessageBroker } from "./src/types/broker";
-import config from "config";
+import { Config } from "./src/config/index";
+
 import ws from "./src/socket";
 const startServer = async () => {
   let broker: MessageBroker | null = null;
@@ -10,7 +11,7 @@ const startServer = async () => {
     await broker.connectConsumer();
     await broker.consumeMessage(["order"], false);
 
-    const PORT = config.get("server.port");
+    const PORT = Config.server.port;
 
     ws.wsServer
       .listen(PORT, () => {

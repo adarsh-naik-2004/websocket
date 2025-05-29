@@ -1,12 +1,12 @@
 import { createServer } from "node:http";
 import { Server } from "socket.io";
-import config from 'config'
+import { Config } from './config/index'
 
 const wsServer = createServer();
 
 const ALLOWED_DOMAINS = [
-  config.get("frontend.clientUI"),
-  config.get("frontend.adminUI"),
+  Config.frontend.clientUI,
+  Config.frontend.adminUI,
 ];
 
 
